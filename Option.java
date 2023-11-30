@@ -48,9 +48,27 @@ public class Option {
         return getCode() == auxOption.getCode();
     }
 
+    public boolean mismaKey(String message){
+        if (this.Keyword.contains(message)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean mismoCode(String message){
+        int messageCode = Integer.parseInt(message);
+        if (this.code == messageCode){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
     @Override
     public String toString() {
-        return this.code + " " + this.message + " " + this.Keyword;
+        return this.code + " " + this.message + " ";
     }
 
 

@@ -68,6 +68,6 @@ public class Flow {
 
     @Override
     public String toString() {
-        return this.nameMsg + " " + getOption().toString();
+        return this.nameMsg + " " + String.join("\n", getOption().toString());
     }
 }
