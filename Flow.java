@@ -3,7 +3,7 @@ package org.example.lab3_21022807_Tapia;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flow {
+public class Flow implements IFlow{
     private int id;
     private String nameMsg;
     private List<Option> option;
@@ -64,10 +64,19 @@ public class Flow {
             return false;
         }
     }
+    public List<String> verOptions(List<Option> options){
+        List<String> opciones = new ArrayList<String>();
+        for(Option option: options){
+            opciones.add(option.toString());
+        }
+        return opciones;
+
+    }
+
 
 
     @Override
     public String toString() {
-        return this.nameMsg + " " + String.join("\n", getOption().toString());
+        return String.format("%s %s",this.nameMsg,String.join("\n",verOptions(getOption())));
     }
 }

@@ -3,12 +3,14 @@ package org.example.lab3_21022807_Tapia;
 
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.List;
 
 
-public class system {
+public class system implements ISystem {
 
     private String name;
     private int initialChatbotCodeLink;
@@ -53,6 +55,23 @@ public class system {
         return historial;
     }
 
+    public User getUserConect(){
+        for(User conectadoUser : getUsers()) {
+            if(conectadoUser.isConectado()){
+                return conectadoUser;
+            }
+        }
+        return null;
+
+    }
+
+    public boolean inicioSesion(){
+        if(getUserConect() != null){  //Si hay un usuario conectado devuelve True
+            return true;
+        }
+        return false;
+    }
+
     public Chatbot getChatbotInitial(){
         Chatbot chatbotInitial = null;
         int id = getInitialChatbotCodeLink();
@@ -79,8 +98,11 @@ public class system {
     }
 
     public void actualizarHistorial(String message){
+        LocalDateTime fechaActual = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaFormateada = fechaActual.format(formato);
         String newHistorial = toString();
-        this.historial.add(message + "\t" + newHistorial);
+        this.historial.add(fechaFormateada + "- " + getUserConect() + ": " + message + "\t" + newHistorial);
 
     }
 
@@ -102,43 +124,29 @@ public class system {
 
     public void systemLogin(String user) {
         //Hay un usuario conectado?
-        for(User conectadoUser : getUsers()) {
-            if(conectadoUser.isConectado()){
-                return;
-        }
-        }
-        //Buscamos el usuario
-        User userConect = null;
-        for(User buscarUser : getUsers()){
-            if(buscarUser.mismoUser(user)){
-                userConect = buscarUser;
-                break;
+        if(!inicioSesion()) {   //No hay ningun usuario conectado
+
+            //Buscamos el usuario
+            User userConect = null;
+            for (User buscarUser : getUsers()) {
+                if (buscarUser.mismoUser(user)) {
+                    userConect = buscarUser;
+                    break;
+                }
             }
-        }
-        if(userConect != null){
-            userConect.setConectado(true);
+            if (userConect != null) {
+                userConect.setConectado(true);
 
-            getUsers().remove(userConect);
-            getUsers().add(userConect);
-
+            }
         }
         else return;
 
     }
 
     public void systemLogout(){
-        User userConect = null;
-        for(User conectadoUser : getUsers()) {
-            if(conectadoUser.isConectado()){
-                userConect = conectadoUser;
-                break;
-            }
-        }
+        User userConect = getUserConect();
         if(userConect!=null){
             userConect.setConectado(false);
-
-            getUsers().remove(userConect);
-            getUsers().add(userConect);
         }else return;
     }
 
@@ -158,6 +166,10 @@ public class system {
     }
 
     public void systemTalk(String message){
+        if(!inicioSesion()){
+            return;
+        }
+
         if(getHistorial().isEmpty()){
             actualizarHistorial(message);
         }
@@ -169,18 +181,17 @@ public class system {
             setInitialChatbotCodeLink(initialIdCb);
             Chatbot chatbotInitial = getChatbotInitial();
             chatbotInitial.setStartFlowId(initialIdFl);
-            systemAddChatbot(chatbotInitial);
             actualizarHistorial(message);
         }
     }
 
     @Override
     public String toString() {
-        return  "- " + getChatbots();
+        return  String.format("%s", getChatbotInitial());
     }
 
     public String mostrarHistorial(){
-        return String.join("\t ",getHistorial());
+        return String.join("\n ",getHistorial());
     }
 
 }

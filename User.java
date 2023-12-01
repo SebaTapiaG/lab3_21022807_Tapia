@@ -9,7 +9,7 @@ public class User {
     public User(String name){
         this.name = name;
         this.tipo = false;  //El usuario es normal por defecto
-        this.tipo = false;  //El usuario esta desconectado por defecto
+        this.conectado = false;  //El usuario esta desconectado por defecto
 
     }
 
@@ -54,18 +54,7 @@ public class User {
 
     @Override
     public String toString() {
-        if( this.tipo && this.conectado ) {
-            return this.name + " conectado (Administrador)";
-        } else if (this.tipo) {
-            return this.name + " desconectado (Administrador)";
-        }
-        else if(!this.tipo && this.conectado) {
-            return this.name + " conectado (Normal)";
-        }
-        else{
-            return this.name + " desconectado (Normal)";
-
-        }
+            return this.name;
     }
 
 }

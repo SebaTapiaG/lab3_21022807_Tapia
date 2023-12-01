@@ -1,8 +1,9 @@
 package org.example.lab3_21022807_Tapia;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Option {
+public class Option implements IOption{
     private int code;
     private String message;
     private int ChatbotCodeLink;
@@ -68,8 +69,10 @@ public class Option {
 
     @Override
     public String toString() {
-        return this.code + " " + this.message + " ";
+        return String.format("%d) %s",this.code,this.message);
     }
+
+
 
 
 }

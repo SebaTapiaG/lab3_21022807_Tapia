@@ -3,7 +3,7 @@ package org.example.lab3_21022807_Tapia;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chatbot {
+public class Chatbot implements IChatbot{
     private int chatbotID ;
     private String name;
     private String welcomeMessage;
@@ -97,7 +97,7 @@ public class Chatbot {
 
     @Override
     public String toString() {
-        return  this.welcomeMessage + " " + getInitialFlow();
+        return  String.format("%s %s",this.welcomeMessage,getInitialFlow());
     }
 }
 
