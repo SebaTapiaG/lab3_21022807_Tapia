@@ -25,7 +25,7 @@ public interface ISystem {
 
     public void setInitialChatbotCodeLink(int initialChatbotCodeLink);
 
-    public void actualizarHistorial(String message);
+    public void actualizarHistorial(User user,String message);
 
     public void systemAddChatbot(Chatbot cb);
 
@@ -39,7 +39,7 @@ public interface ISystem {
 
     public void systemTalk(String message);
 
-    public String mostrarHistorial();
+    public String systemSynthesis(String user);
 
 
 }

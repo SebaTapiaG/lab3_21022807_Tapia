@@ -25,7 +25,6 @@ public class system implements ISystem {
         this.initialChatbotCodeLink = initialChatbotCodeLink;
         this.chatbots = new ArrayList<Chatbot>();
         this.users = new ArrayList<User>();
-        this.historial = new ArrayList<String>();
 
         for (Chatbot newChatbot : chatbots) {
             if (!this.chatbots.contains(newChatbot)) {
@@ -97,12 +96,12 @@ public class system implements ISystem {
         this.initialChatbotCodeLink = initialChatbotCodeLink;
     }
 
-    public void actualizarHistorial(String message){
+    public void actualizarHistorial(User user,String message){
         LocalDateTime fechaActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String fechaFormateada = fechaActual.format(formato);
         String newHistorial = toString();
-        this.historial.add(fechaFormateada + "- " + getUserConect() + ": " + message + "\t" + newHistorial);
+        user.getHistorial().add(fechaFormateada + "- " + user + ": " + message + "\t" + newHistorial);
 
     }
 
@@ -170,8 +169,10 @@ public class system implements ISystem {
             return;
         }
 
-        if(getHistorial().isEmpty()){
-            actualizarHistorial(message);
+        User userConect = getUserConect();
+
+        if(userConect.getHistorial().isEmpty()){
+            actualizarHistorial(userConect,message);
         }
         else {
             //Actualiza los links
@@ -181,7 +182,7 @@ public class system implements ISystem {
             setInitialChatbotCodeLink(initialIdCb);
             Chatbot chatbotInitial = getChatbotInitial();
             chatbotInitial.setStartFlowId(initialIdFl);
-            actualizarHistorial(message);
+            actualizarHistorial(userConect,message);
         }
     }
 
@@ -190,8 +191,21 @@ public class system implements ISystem {
         return  String.format("%s", getChatbotInitial());
     }
 
-    public String mostrarHistorial(){
-        return String.join("\n ",getHistorial());
+    public String systemSynthesis(String user){
+
+        //Buscamos el usuario
+        User userSearch = null;
+        for (User buscarUser : getUsers()) {
+            if (buscarUser.mismoUser(user)) {
+                userSearch = buscarUser;
+                break;
+            }
+        }
+        if(userSearch.getHistorial().isEmpty()){
+            return("El usuario no tiene historial");
+        }
+
+        return String.join("\n ",userSearch.getHistorial());
     }
 
 }

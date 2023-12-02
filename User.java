@@ -1,15 +1,21 @@
 package org.example.lab3_21022807_Tapia;
 
-public class User {
+import java.util.ArrayList;
+import java.util.List;
+
+public class User implements IUser {
     private String name;
     private boolean tipo;   //Si el tipo es verdadero es administrador, si es falso es normal
 
     private boolean conectado; //Si conectado es verdadero, el usuario esta conectado
 
+    private List<String> historial;
+
     public User(String name){
         this.name = name;
         this.tipo = false;  //El usuario es normal por defecto
         this.conectado = false;  //El usuario esta desconectado por defecto
+        this.historial=new ArrayList<String>();
 
     }
 
@@ -19,6 +25,10 @@ public class User {
 
     public boolean getTipo(){
         return tipo;
+    }
+
+    public List<String> getHistorial() {
+        return historial;
     }
 
     public void setTipo(boolean tipo) {
