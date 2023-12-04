@@ -50,9 +50,6 @@ public class system implements ISystem {
         return users;
     }
 
-    public List<String> getHistorial() {
-        return historial;
-    }
 
     public User getUserConect(){
         for(User conectadoUser : getUsers()) {

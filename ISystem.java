@@ -12,7 +12,6 @@ public interface ISystem {
 
     public List<User> getUsers();
 
-    public List<String> getHistorial();
 
     public Chatbot getChatbotInitial();
 

@@ -51,6 +51,26 @@ public class User implements IUser {
         return conectado;
     }
 
+    //----------------Metodos Admin------------
+
+    public void addChatbotToSystem(){
+        if(!this.tipo) return;     //Si el tipo es Falso no permite este metodo
+
+
+    }
+
+    public void addFlowToChatbot(){
+        if(!this.tipo) return;      //Si el tipo es Falso no permite este metodo
+
+
+    }
+
+    public void addOptionToFlow(){
+        if(!this.tipo) return;      //Si el tipo es Falso no permite este metodo
+
+
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;  // Verifica si es la misma instancia
