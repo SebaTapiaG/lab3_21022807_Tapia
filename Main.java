@@ -130,7 +130,9 @@ public class Main {
 
         s1.systemLogout();
 
-        s1.systemLogin("Mauro");
+
+       // s1.systemLogin("Mauro");
+
 
 
 
@@ -175,7 +177,7 @@ public class Main {
                     System.out.println("Opcion no valida");
                     break;
             }
-        } while (entrada != "3");
+        } while (!entrada.equals("3"));
         scanner.close();
     }
 
@@ -218,7 +220,7 @@ public class Main {
 
             }
 
-        } while (entrada != "4");
+        } while (!entrada.equals("4"));
 
         scanner.close();
     }
@@ -253,7 +255,7 @@ public class Main {
                     break;
 
                 case "4":
-                    System.out.println();
+                    System.out.println(sistema.getChatbots());
                     break;
 
                 case "5":
@@ -290,21 +292,21 @@ public class Main {
 
                 case "1":
                     String opcion;
-                    System.out.println(sistema);
-                    System.out.println("Ingresa tu opcion o Keyword (o 10 para salir) \n");
+                    System.out.println("Saluda al Chatbot :D ");
                     opcion = scanner.next();
-                    while(opcion != "10") {
+                    do {
                         sistema.systemTalk(opcion);
                         System.out.println(sistema);
                         opcion = scanner.next();
-                    }
+                        System.out.println("Ingresa tu opcion o Keyword (o 10 para salir) \n");
+                    }while(!opcion.equals("10"));
 
                     normalMenu(sistema,nombreUsuario);
 
                     break;
 
                 case "2":
-                    String synthesis = sistema.systemSynthesis("Cesar");
+                    String synthesis = sistema.systemSynthesis(nombreUsuario);
                     System.out.println(synthesis);
                     break;
 

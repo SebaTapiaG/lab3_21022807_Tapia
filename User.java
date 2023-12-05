@@ -40,7 +40,7 @@ public class User implements IUser {
     }
 
     public boolean mismoUser(String nombre){
-        if (this.name == nombre){
+        if (this.name.equals(nombre)){
             return true;
         }else {
             return false;
