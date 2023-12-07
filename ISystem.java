@@ -40,5 +40,9 @@ public interface ISystem {
 
     public String systemSynthesis(String user);
 
+    public String mostrarChatbots();
+
+    public void systemSymulate(int maxInteractions, int seed);
+
 
 }

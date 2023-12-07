@@ -99,6 +99,14 @@ public class Chatbot implements IChatbot{
     public String toString() {
         return  String.format("%s %s",this.welcomeMessage,getInitialFlow());
     }
+
+    public String verChatbot(){
+        List<String> mostrar = new ArrayList<String>();
+        for(Flow flow : getFlows()){
+            mostrar.add(flow.verFlow());
+        }
+        return String.format("ID: %s, Nombre: %s, welcomeMessage %s, Flows: %s ",this.chatbotID,this.name,this.welcomeMessage,String.join("\n",mostrar));
+    }
 }
 
 

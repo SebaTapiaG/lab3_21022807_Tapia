@@ -18,7 +18,6 @@ public class system implements ISystem {
 
     private List<User> users;
 
-    private List<String> historial;
 
     public system(String name, int initialChatbotCodeLink, List<Chatbot> chatbots) {
         this.name = name;
@@ -157,6 +156,7 @@ public class system implements ISystem {
                 optionElegida = buscarOption;
                 return optionElegida;
             }
+
         }
         return optionElegida;
     }
@@ -174,13 +174,18 @@ public class system implements ISystem {
         else {
             //Actualiza los links
             Option optionElegida = optionEscogida(message);
-            int initialIdFl = optionElegida.getInitialFlowCodeLink();
-            int initialIdCb = optionElegida.getChatbotCodeLink();
-            setInitialChatbotCodeLink(initialIdCb);
-            Chatbot chatbotInitial = getChatbotInitial();
-            chatbotInitial.setStartFlowId(initialIdFl);
-            actualizarHistorial(userConect,message);
+            if(optionElegida == null){  //No existe la opcion
+                return;
+            }else {
+                int initialIdFl = optionElegida.getInitialFlowCodeLink();
+                int initialIdCb = optionElegida.getChatbotCodeLink();
+                setInitialChatbotCodeLink(initialIdCb);
+                Chatbot chatbotInitial = getChatbotInitial();
+                chatbotInitial.setStartFlowId(initialIdFl);
+                actualizarHistorial(userConect, message);
+            }
         }
+
     }
 
     @Override
@@ -203,6 +208,27 @@ public class system implements ISystem {
         }
 
         return String.join("\n ",userSearch.getHistorial());
+    }
+
+    public void systemSymulate(int maxInteractions, int seed){
+        String semilla = String.valueOf(seed);
+        int contador = 0;
+        systemTalk("Simulacion");
+        while(contador < maxInteractions){
+            systemTalk(String.valueOf(semilla.charAt(0)));
+            systemTalk(String.valueOf(semilla.charAt(1)));
+            systemTalk(String.valueOf(semilla.charAt(2)));
+            systemTalk(String.valueOf(semilla.charAt(3)));
+            contador++;
+        }
+    }
+
+    public String mostrarChatbots(){
+        List<String> mostrar = new ArrayList<String>();
+        for(Chatbot chatbot : getChatbots()){
+            mostrar.add(chatbot.verChatbot());
+        }
+        return String.join("\n",mostrar);
     }
 
 }

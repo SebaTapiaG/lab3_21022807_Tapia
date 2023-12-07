@@ -16,4 +16,6 @@ public interface IFlow {
     public boolean mismoId(int id);
 
     List<String> verOptions(List<Option> options);
+
+    public String verFlow();
 }

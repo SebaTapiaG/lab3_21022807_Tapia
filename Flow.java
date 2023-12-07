@@ -78,5 +78,11 @@ public class Flow implements IFlow{
     @Override
     public String toString() {
         return String.format("%s %s",this.nameMsg,String.join("\n",verOptions(getOption())));
+
+
+    }
+
+    public String verFlow(){
+        return String.format("ID Flow: %s, Nombre: %s, Opciones: %s",this.id,this.nameMsg,String.join("\n",verOptions(getOption())));
     }
 }

@@ -117,6 +117,8 @@ public class Main {
 
         s1.systemLogin("Cesar");
 
+        user1.setTipo(true);
+
 
         s1.systemTalk("Hola");
 
@@ -131,10 +133,9 @@ public class Main {
         s1.systemLogout();
 
 
-       // s1.systemLogin("Mauro");
-
-
-
+        s1.systemLogin("Mauro");
+        s1.systemSymulate(6,1131);
+        System.out.println(s1.systemSynthesis("Mauro"));
 
 //-----------------Menu------------------------//
 
@@ -160,8 +161,10 @@ public class Main {
                     System.out.println("Ingrese su nombre de usuario");
                     String nombreUsuario = scanner.next();
                     sistema.systemLogin(nombreUsuario);
-                    System.out.println(sistema.getUserConect());
-                    normalMenu(sistema,nombreUsuario);
+                    if(!sistema.getUserConect().getTipo()) {   //El usuario es normal?
+                        normalMenu(sistema, nombreUsuario);
+                    }
+                    adminMenu(sistema);
                     break;
 
                 case "2":
@@ -170,6 +173,7 @@ public class Main {
 
                 case "3":
                     System.out.println("Gracias!, que te vaya bien!");
+                    sistema.systemLogout();
                     System.exit(0);
                     break;
 
@@ -199,7 +203,7 @@ public class Main {
                     String nombreUsuario = scanner.next();
                     User newUser = new User(nombreUsuario);
                     sistema.systemAddUser(newUser);
-                    System.out.println(sistema.getUsers());
+                    sistema.systemLogin(nombreUsuario);      //Inicia sesion automaticamente
                     normalMenu(sistema,nombreUsuario);
                     break;
 
@@ -209,7 +213,7 @@ public class Main {
                     User newAdmin = new User(nombreAdmin);
                     newAdmin.setTipo(true);
                     sistema.systemAddUser(newAdmin);
-                    System.out.println(sistema.getUsers());
+                    sistema.systemLogin(nombreAdmin);   //Inicia sesion automaticamente
                     adminMenu(sistema);
                     break;
 
@@ -255,7 +259,7 @@ public class Main {
                     break;
 
                 case "4":
-                    System.out.println(sistema.getChatbots());
+                    System.out.println(sistema.mostrarChatbots() + "\n");
                     break;
 
                 case "5":
@@ -311,7 +315,11 @@ public class Main {
                     break;
 
                 case "3":
-                    System.out.println();
+                    System.out.println("Ingresa tu semilla: \n");
+                    int seed = scanner.nextInt();
+                    System.out.println("Ingresa el maximo de iteraciones: \n");
+                    int i = scanner.nextInt();
+                    sistema.systemSymulate(i,seed);
                     break;
 
                 case "4":
