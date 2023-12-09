@@ -17,12 +17,4 @@ public interface IUser {
     public boolean mismoUser(String nombre);
 
     public boolean isConectado();
-
-    //-------Metodos Admin--------
-
-    public void addChatbotToSystem();
-
-    public void addFlowToChatbot();
-
-    public void addOptionToFlow();
 }

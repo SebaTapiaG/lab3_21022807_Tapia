@@ -72,25 +72,34 @@ public class Flow implements IFlow{
             return false;
         }
     }
-    public List<String> verOptions(List<Option> options){
+    public List<String> verOptions(){
         List<String> opciones = new ArrayList<String>();
-        for(Option option: options){
+        for(Option option: getOption()){
             opciones.add(option.toString());
         }
         return opciones;
 
     }
 
+    public Option buscarOption(String code){
+        for(Option optionAux : getOption()){
+            if (optionAux.mismoCode(code)){
+                return optionAux;
+            }
+        }
+        return null;
+    }
+
 
 
     @Override
     public String toString() {
-        return String.format("%s %s",this.nameMsg,String.join("\n",verOptions(getOption())));
+        return String.format("%s %s",this.nameMsg,String.join("\n",verOptions()));
 
 
     }
 
     public String verFlow(){
-        return String.format("ID Flow: %s, Nombre: %s, Opciones: %s",this.id,this.nameMsg,String.join("\n",verOptions(getOption())));
+        return String.format("ID Flow: %s, Nombre: %s, Opciones: %s",this.id,this.nameMsg,String.join("\n",verOptions()));
     }
 }

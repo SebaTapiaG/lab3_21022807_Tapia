@@ -38,6 +38,22 @@ public class Option implements IOption{
         return Keyword;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setChatbotCodeLink(int chatbotCodeLink) {
+        ChatbotCodeLink = chatbotCodeLink;
+    }
+
+    public void setInitialFlowCodeLink(int initialFlowCodeLink) {
+        InitialFlowCodeLink = initialFlowCodeLink;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;  // Verifica si es la misma instancia

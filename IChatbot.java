@@ -14,7 +14,6 @@ public interface IChatbot {
 
     public List<Flow> getFlows();
 
-    public void setFlows(List<Flow> flows);
 
     public void setStartFlowId(int startFlowId);
 
@@ -25,4 +24,7 @@ public interface IChatbot {
     public void chatbotAddFlow(Flow fl);
 
     public Flow buscarFlow(int id);
+
+    public String verChatbot();
 }
+

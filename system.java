@@ -124,7 +124,6 @@ public class system implements ISystem {
     public void systemAddChatbot(Chatbot cb) {
         if (!getChatbots().contains(cb)) {
             this.chatbots.add(cb);
-            setChatbots(chatbots);
         } else {
             this.chatbots.remove(cb);
             this.chatbots.add(cb);

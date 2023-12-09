@@ -46,9 +46,6 @@ public class Chatbot implements IChatbot{
         return flows;
     }
 
-    public void setFlows(List<Flow> flows) {
-        this.flows = flows;
-    }
 
     public void setStartFlowId(int startFlowId) {
         this.startFlowId = startFlowId;
@@ -101,7 +98,6 @@ public class Chatbot implements IChatbot{
     public void chatbotAddFlow(Flow fl){
         if (!getFlows().contains(fl)) {
             this.flows.add(fl);
-            setFlows(flows);
         }else return;
 
     }

@@ -1,6 +1,5 @@
 package org.example.lab3_21022807_Tapia;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ISystem {
@@ -19,8 +18,7 @@ public interface ISystem {
     public User getUserConect();
 
     public boolean inicioSesion();
-
-    public void setChatbots(List<Chatbot> chatbots);
+    
 
     public void setInitialChatbotCodeLink(int initialChatbotCodeLink);
 
