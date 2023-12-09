@@ -23,4 +23,6 @@ public interface IChatbot {
     public boolean mismoID(int id);
 
     public void chatbotAddFlow(Flow fl);
+
+    public Flow buscarFlow(int id);
 }

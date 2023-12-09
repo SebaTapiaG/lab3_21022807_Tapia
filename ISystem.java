@@ -44,5 +44,9 @@ public interface ISystem {
 
     public void systemSymulate(int maxInteractions, int seed);
 
+    public boolean existeChatbot(int id);
+
+    public String mostrarSystems(List<system> sistemas);
+
 
 }

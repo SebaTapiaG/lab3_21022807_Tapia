@@ -38,6 +38,14 @@ public class Flow implements IFlow{
         this.option = option;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNameMsg(String nameMsg) {
+        this.nameMsg = nameMsg;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;  // Verifica si es la misma instancia

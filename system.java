@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class system implements ISystem {
@@ -77,6 +78,25 @@ public class system implements ISystem {
             }
         }
         return chatbotInitial;
+    }
+
+    public boolean existeChatbot(int id){
+        for(Chatbot existeChatbot : getChatbots()){
+            if (existeChatbot.mismoID(id)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public Chatbot buscarChatbot(int id){
+        for(Chatbot chatbotAux : getChatbots()){
+            if (chatbotAux.mismoID(id)){
+                return chatbotAux;
+            }
+        }
+        return null;
     }
 
     public List<Option> getInitialOptions(){
@@ -174,19 +194,22 @@ public class system implements ISystem {
         else {
             //Actualiza los links
             Option optionElegida = optionEscogida(message);
-            if(optionElegida == null){  //No existe la opcion
+            if(optionElegida == null){  //No existe la option
                 return;
-            }else {
-                int initialIdFl = optionElegida.getInitialFlowCodeLink();
-                int initialIdCb = optionElegida.getChatbotCodeLink();
-                setInitialChatbotCodeLink(initialIdCb);
-                Chatbot chatbotInitial = getChatbotInitial();
-                chatbotInitial.setStartFlowId(initialIdFl);
-                actualizarHistorial(userConect, message);
+            }
+            int initialIdFl = optionElegida.getInitialFlowCodeLink();
+            int initialIdCb = optionElegida.getChatbotCodeLink();
+            if(!existeChatbot(initialIdCb)){  //No existe el Chatbot
+                return;
+            }
+            setInitialChatbotCodeLink(initialIdCb);
+            Chatbot chatbotInitial = getChatbotInitial();
+            chatbotInitial.setStartFlowId(initialIdFl);
+            actualizarHistorial(userConect, message);
             }
         }
 
-    }
+
 
     @Override
     public String toString() {
@@ -211,14 +234,18 @@ public class system implements ISystem {
     }
 
     public void systemSymulate(int maxInteractions, int seed){
-        String semilla = String.valueOf(seed);
+        Random random = new Random(seed);
+        // Generar el numero aleatorio
+        int randomNumber= Math.abs(random.nextInt());
+        String semilla = String.valueOf(randomNumber);
         int contador = 0;
         systemTalk("Simulacion");
         while(contador < maxInteractions){
-            systemTalk(String.valueOf(semilla.charAt(0)));
-            systemTalk(String.valueOf(semilla.charAt(1)));
-            systemTalk(String.valueOf(semilla.charAt(2)));
-            systemTalk(String.valueOf(semilla.charAt(3)));
+            int index = 0;
+            while(index < semilla.length()) {
+                systemTalk(String.valueOf(semilla.charAt(index)));
+                index++;
+            }
             contador++;
         }
     }
@@ -231,4 +258,14 @@ public class system implements ISystem {
         return String.join("\n",mostrar);
     }
 
+    public String mostrarSystems(List<system> sistemas){
+        List<String> mostrar = new ArrayList<String>();
+        for(system sistema : sistemas){
+            mostrar.add(sistema.getName());
+        }
+        return String.join("\n",mostrar);
+    }
+
+
 }
+

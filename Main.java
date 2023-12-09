@@ -1,5 +1,6 @@
 package org.example.lab3_21022807_Tapia;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -119,7 +120,6 @@ public class Main {
 
         user1.setTipo(true);
 
-
         s1.systemTalk("Hola");
 
         s1.systemTalk("1");
@@ -128,20 +128,47 @@ public class Main {
 
         s1.systemTalk("3");
 
-        //System.out.println(s1.systemSynthesis("Cesar"));
 
         s1.systemLogout();
 
-
-        s1.systemLogin("Mauro");
-        s1.systemSymulate(6,1131);
-        System.out.println(s1.systemSynthesis("Mauro"));
 
 //-----------------Menu------------------------//
 
         registroMenu(s1);
 
     }
+
+    private static void inicialMenu() {
+        Scanner scanner = new Scanner(System.in);
+        String entrada;
+
+        do {
+            System.out.println("1.  Elegir sistema \n");
+            System.out.println("2. Salir \n");
+            System.out.println("\nIngresa tu opcion: ");
+            entrada = scanner.nextLine();
+
+            switch (entrada) {
+
+                case "1":
+                    
+                    System.out.println("Ingrese el nombre del sistema");
+                    break;
+
+                case "2":
+                    System.out.println("Gracias!, que te vaya bien!");
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
+            }
+
+        } while (!entrada.equals("2"));
+        scanner.close();
+    }
+
 
     private static void registroMenu(system sistema){
         Scanner scanner = new Scanner(System.in);
@@ -164,7 +191,7 @@ public class Main {
                     if(!sistema.getUserConect().getTipo()) {   //El usuario es normal?
                         normalMenu(sistema, nombreUsuario);
                     }
-                    adminMenu(sistema);
+                    adminMenu(sistema,nombreUsuario);
                     break;
 
                 case "2":
@@ -214,7 +241,7 @@ public class Main {
                     newAdmin.setTipo(true);
                     sistema.systemAddUser(newAdmin);
                     sistema.systemLogin(nombreAdmin);   //Inicia sesion automaticamente
-                    adminMenu(sistema);
+                    adminMenu(sistema,nombreAdmin);
                     break;
 
                 case "3":
@@ -229,7 +256,7 @@ public class Main {
         scanner.close();
     }
 
-    private static void adminMenu(system sistema){
+    private static void adminMenu(system sistema,String nombreUsuario){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -247,11 +274,25 @@ public class Main {
             switch (entrada){
 
                 case "1":
-                    System.out.println();
+                    System.out.println("Ingresa el id del Chatbot: \n");
+                    int id = scanner.nextInt();
+                    System.out.println("Ingresa el nombre del Chatbot: \n");
+                    String nombre = scanner.next();
+                    System.out.println("Ingresa el welcome message del Chatbot: \n");
+                    String welcome = scanner.next();
+                    System.out.println("Ingresa el startFlowID del Chatbot: \n");
+                    int startFlow = scanner.nextInt();
+                    List<Flow> flowsVacio = new ArrayList<Flow>();
+                    Chatbot cbNuevo = new Chatbot(id,nombre,welcome,startFlow,flowsVacio);
+                    sistema.systemAddChatbot(cbNuevo);
                     break;
 
                 case "2":
-                    System.out.println();
+                    System.out.println(sistema.mostrarChatbots());
+                    System.out.println("Elige el chatbot a modificar segun su id\n");
+                    int idCb = scanner.nextInt();
+                    Chatbot chatbotBuscado = sistema.buscarChatbot(idCb);
+                    modificarChat(sistema,nombreUsuario,chatbotBuscado);
                     break;
 
                 case "3":
@@ -263,7 +304,11 @@ public class Main {
                     break;
 
                 case "5":
-                    System.out.println();
+                    System.out.println("Ingresa tu semilla: \n");
+                    int seed = scanner.nextInt();
+                    System.out.println("Ingresa el maximo de iteraciones: \n");
+                    int i = scanner.nextInt();
+                    sistema.systemSymulate(i,seed);
                     break;
 
                 case "6":
@@ -333,8 +378,182 @@ public class Main {
         scanner.close();
         }
 
+        public static void modificarChat(system sistema,String nombreUsuario, Chatbot chatbot){
+            Scanner scanner = new Scanner(System.in);
+            String entrada;
 
+            do {
+
+                System.out.println("1. Modificar Flows \n");
+                System.out.println("2. Modificar Options \n");
+                System.out.println("3. Modificar ID\n");
+                System.out.println("4. Modificar Nombre\n");
+                System.out.println("5. Modificar Mensaje de bienvenida\n");
+                System.out.println("6. Modificar startFlowId\n");
+                System.out.println("7. Volver \n");
+                System.out.println("\n Ingresa tu opcion: ");
+                entrada= scanner.nextLine();
+
+                switch (entrada){
+
+                    case "1":
+                        System.out.println(chatbot.verChatbot());
+                        System.out.println("Elige el flow a modificar segun su id \n");
+                        int idFl = scanner.nextInt();
+                        Flow flowBuscado = chatbot.buscarFlow(idFl);
+                        modificarFlow(sistema,nombreUsuario,chatbot,flowBuscado);
+                        break;
+
+                    case "2":
+                        String synthesis = sistema.systemSynthesis(nombreUsuario);
+                        System.out.println(synthesis);
+                        break;
+
+                    case "3":
+                        System.out.println("Ingresa el id nuevo: \n");
+                        int idNuevo = scanner.nextInt();
+                        chatbot.setChatbotID(idNuevo);
+                        break;
+
+                    case "4":
+                        System.out.println("Ingresa el nombre nuevo: \n");
+                        String nombreNuevo = scanner.next();
+                        chatbot.setName(nombreNuevo);
+                        break;
+
+                    case "5":
+                        System.out.println("Ingresa el nuevo mensaje: \n");
+                        String mensajeNuevo = scanner.next();
+                        chatbot.setWelcomeMessage(mensajeNuevo);
+                        break;
+
+                    case "6":
+                        System.out.println("Ingresa el startFlowId nuevo: \n");
+                        int flowNuevo = scanner.nextInt();
+                        chatbot.setStartFlowId(flowNuevo);
+                        break;
+
+                    case "7":
+                        adminMenu(sistema,nombreUsuario);
+                        break;
+                }
+
+            } while (!entrada.equalsIgnoreCase("7"));
+
+            scanner.close();
+        }
+
+    public static void modificarFlow(system sistema,String nombreUsuario, Chatbot chatbot,Flow flow){
+        Scanner scanner = new Scanner(System.in);
+        String entrada;
+
+        do {
+
+            System.out.println("1. Crear Flow \n");
+            System.out.println("2. Modificar Options \n");
+            System.out.println("3. Modificar Id\n");
+            System.out.println("4. Modificar NameMSG\n");
+            System.out.println("5. Volver\n");
+            System.out.println("\n Ingresa tu opcion: ");
+            entrada= scanner.nextLine();
+
+            switch (entrada){
+
+                case "1":
+                    System.out.println("Ingresa el id del Flow \n");
+                    int id = scanner.nextInt();
+                    System.out.println("Ingresa el nombre del Flow: \n");
+                    String nombre = scanner.next();
+                    List<Option> optionsVacio = new ArrayList<Option>();
+                    Flow flowNew = new Flow(id,nombre,optionsVacio);
+                    chatbot.chatbotAddFlow(flowNew);
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    System.out.println("Ingresa el id nuevo: \n");
+                    int idNuevo = scanner.nextInt();
+                    flow.setId(idNuevo);
+                    break;
+
+                case "4":
+                    System.out.println("Ingresa el nombre nuevo: \n");
+                    String nombreNuevo = scanner.next();
+                    flow.setNameMsg(nombreNuevo);
+                    break;
+
+                case "5":
+                    adminMenu(sistema,nombreUsuario);
+                    break;
+            }
+
+        } while (!entrada.equalsIgnoreCase("5"));
+
+        scanner.close();
     }
+
+    public static void modificarOption(system sistema,String nombreUsuario, Chatbot chatbot,Flow flow,Option option){
+        Scanner scanner = new Scanner(System.in);
+        String entrada;
+
+        do {
+
+            System.out.println("1. Crear Option \n");
+            System.out.println("2. Modificar Code \n");
+            System.out.println("3. Modificar Message\n");
+            System.out.println("4. Modificar  ChatbotCodeLink\n");
+            System.out.println("5. Modificar initialFlowLink\n");
+            System.out.println("6. Modificar Keywords\n");
+            System.out.println("\n Ingresa tu opcion: ");
+            entrada= scanner.nextLine();
+
+            switch (entrada){
+
+                case "1":
+                    System.out.println("Ingresa el code de Option \n");
+                    int id = scanner.nextInt();
+                    System.out.println("Ingresa el mensaje de Option: \n");
+                    String nombre = scanner.next();
+                    System.out.println("Ingresa el chatbotCodeLink de Option: \n");
+                    int cbLink = scanner.nextInt();
+                    System.out.println("Ingresa el initialFlowCodeLink de Option: \n");
+                    int flLink = scanner.nextInt();
+                    List<String> keywordsVacio = new ArrayList<String>();
+                    Option optionNew = new Option(id,nombre,cbLink,flLink,keywordsVacio);
+                    flow.flowAddOption(optionNew);
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    System.out.println("Ingresa el id nuevo: \n");
+                    int idNuevo = scanner.nextInt();
+                    flow.setId(idNuevo);
+                    break;
+
+                case "4":
+                    System.out.println("Ingresa el nombre nuevo: \n");
+                    String nombreNuevo = scanner.next();
+                    flow.setNameMsg(nombreNuevo);
+                    break;
+
+                case "5":
+                    adminMenu(sistema,nombreUsuario);
+                    break;
+            }
+
+        } while (!entrada.equalsIgnoreCase("5"));
+
+        scanner.close();
+    }
+
+
+
+
+}
 
 
 

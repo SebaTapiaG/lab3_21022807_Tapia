@@ -54,6 +54,18 @@ public class Chatbot implements IChatbot{
         this.startFlowId = startFlowId;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setChatbotID(int chatbotID) {
+        this.chatbotID = chatbotID;
+    }
+
+    public void setWelcomeMessage(String welcomeMessage) {
+        this.welcomeMessage = welcomeMessage;
+    }
+
     public Flow getInitialFlow() {
         Flow flowInitial = null;
         int id = getStartFlowId();
@@ -92,7 +104,15 @@ public class Chatbot implements IChatbot{
             setFlows(flows);
         }else return;
 
+    }
 
+    public Flow buscarFlow(int id){
+        for(Flow flowAux : getFlows()){
+            if (flowAux.mismoId(id)){
+                return flowAux;
+            }
+        }
+        return null;
     }
 
     @Override
