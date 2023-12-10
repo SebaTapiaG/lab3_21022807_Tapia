@@ -11,6 +11,10 @@ public class User implements IUser {
 
     private List<String> historial;
 
+    /**
+     *
+     * @param name
+     */
     public User(String name){
         this.name = name;
         this.tipo = false;  //El usuario es normal por defecto
@@ -19,26 +23,51 @@ public class User implements IUser {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getTipo(){
         return tipo;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getHistorial() {
         return historial;
     }
 
+    /**
+     *
+     * @param tipo
+     */
     public void setTipo(boolean tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     *
+     * @param conectado
+     */
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
     }
 
+    /**
+     *
+     * @param nombre
+     * @return
+     */
     public boolean mismoUser(String nombre){
         if (this.name.equals(nombre)){
             return true;
@@ -47,29 +76,14 @@ public class User implements IUser {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isConectado() {
         return conectado;
     }
 
-    //----------------Metodos Admin------------
-
-    public void addChatbotToSystem(){
-        if(!this.tipo) return;     //Si el tipo es Falso no permite este metodo
-
-
-    }
-
-    public void addFlowToChatbot(){
-        if(!this.tipo) return;      //Si el tipo es Falso no permite este metodo
-
-
-    }
-
-    public void addOptionToFlow(){
-        if(!this.tipo) return;      //Si el tipo es Falso no permite este metodo
-
-
-    }
 
     @Override
     public boolean equals(Object obj) {

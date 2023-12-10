@@ -6,7 +6,6 @@ public interface IOption {
 
     public int getCode();
 
-    public String getMessage();
 
     public int getChatbotCodeLink();
 

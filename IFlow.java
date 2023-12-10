@@ -5,11 +5,7 @@ import java.util.List;
 public interface IFlow {
     public int getId();
 
-    public String getNameMsg();
-
     public List<Option> getOption();
-
-    public void setOption(List<Option> option);
 
     public void flowAddOption(Option op);
 

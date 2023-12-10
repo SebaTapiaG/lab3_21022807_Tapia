@@ -44,7 +44,5 @@ public interface ISystem {
 
     public boolean existeChatbot(int id);
 
-    public String mostrarSystems(List<system> sistemas);
-
 
 }

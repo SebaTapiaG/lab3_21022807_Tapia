@@ -11,6 +11,14 @@ public class Chatbot implements IChatbot{
 
     private List<Flow> flows;
 
+    /**
+     *Constructo del objeto
+     * @param chatbotID
+     * @param name
+     * @param welcomeMessage
+     * @param startFlowId
+     * @param flows
+     */
     public Chatbot(int chatbotID, String name, String welcomeMessage, int startFlowId, List<Flow> flows){
         this.chatbotID= chatbotID;
         this.name=name;
@@ -26,43 +34,82 @@ public class Chatbot implements IChatbot{
         }
     }
 
+    /**
+     *Obtiene el chatbotID
+     * @return chatbotID
+     */
     public int getChatbotID() {
         return chatbotID;
     }
 
+    /**
+     *Obtiene el name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *Obtiene el welcomeMessage
+     * @return welcomeMessage
+     */
     public String getWelcomeMessage() {
         return welcomeMessage;
     }
 
+    /**
+     *Obtiene el startFlowID
+     * @return startFlowID
+     */
     public int getStartFlowId() {
         return startFlowId;
     }
 
+    /**
+     *Obtiene la lista de flows
+     * @return List</Flow>
+     */
     public List<Flow> getFlows() {
         return flows;
     }
 
-
+    /**
+     *Cambia el startFlowId
+     * @param startFlowId nuevo startFlowId
+     */
     public void setStartFlowId(int startFlowId) {
         this.startFlowId = startFlowId;
     }
 
+    /**
+     *Cambia el name
+     * @param name nuevo name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *Cambia el chatbotID
+     * @param chatbotID nuevo chatbotID
+     */
     public void setChatbotID(int chatbotID) {
         this.chatbotID = chatbotID;
     }
 
+    /**
+     *Cambia el welcomeMessage
+     * @param welcomeMessage nuevo welcomeMessage
+     */
     public void setWelcomeMessage(String welcomeMessage) {
         this.welcomeMessage = welcomeMessage;
     }
 
+    /**
+     * Obtiene el flow initial a partir del startFlowID
+     * @return flow inicial
+     */
     public Flow getInitialFlow() {
         Flow flowInitial = null;
         int id = getStartFlowId();
@@ -75,18 +122,27 @@ public class Chatbot implements IChatbot{
         return flowInitial;
     }
 
-
+    /**
+     * Verifica si 2 objetos son iguales
+     * @param obj
+     * @return boolean, si son iguales retorna true
+     */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Verifica si es la misma instancia
-        if (obj == null) return false;  // Verifica si las clases son diferentes
+        if (this == obj) return true;
+        if (obj == null) return false;
 
-        Chatbot auxChatbot = (Chatbot) obj;  // Hace un cast a Option
+        Chatbot auxChatbot = (Chatbot) obj;
 
-        // Compara los códigos utilizando equals()
+        // Compara los ids utilizando equals()
         return getChatbotID() == auxChatbot.getChatbotID();
     }
 
+    /**
+     *Verifica si un id es el mismo del objeto
+     * @param id
+     * @return boolean, true si es el mismo id
+     */
     public boolean mismoID(int id){
         if (this.chatbotID == id){
             return true;
@@ -95,6 +151,10 @@ public class Chatbot implements IChatbot{
         }
     }
 
+    /**
+     *Agrega un flow al chatbot
+     * @param fl , flow a agregar
+     */
     public void chatbotAddFlow(Flow fl){
         if (!getFlows().contains(fl)) {
             this.flows.add(fl);
@@ -102,6 +162,11 @@ public class Chatbot implements IChatbot{
 
     }
 
+    /**
+     *Busca una flow del chatbot segun su id
+     * @param id
+     * @return flow encontrado
+     */
     public Flow buscarFlow(int id){
         for(Flow flowAux : getFlows()){
             if (flowAux.mismoId(id)){
@@ -111,11 +176,19 @@ public class Chatbot implements IChatbot{
         return null;
     }
 
+    /**
+     * Convirte en string al objeto
+     * @return String objeto
+     */
     @Override
     public String toString() {
         return  String.format("%s %s",this.welcomeMessage,getInitialFlow());
     }
 
+    /**
+     *Convierte el objeto a string con un formato determinado
+     * @return String chatbot formateado
+     */
     public String verChatbot(){
         List<String> mostrar = new ArrayList<String>();
         for(Flow flow : getFlows()){
