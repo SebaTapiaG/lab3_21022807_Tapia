@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
 
         //Creamos la lista de Keywords
-        List<String> urbano = Arrays.asList("urbano", "latino", "urbano latino");
-        List<String> rock = Arrays.asList("rock", "rock and roll");
+        List<String> urbano = Arrays.asList("URBANO", "latino", "urbano latino");
+        List<String> rock = Arrays.asList("rock", "rock and roll","metal");
 
 
         //Creamos la option del flow 1
         Option_21022807_TapiaGalleguillos op1 = new Option_21022807_TapiaGalleguillos(1, "Urbano latino", 1, 1, urbano);
-        Option_21022807_TapiaGalleguillos op2 = new Option_21022807_TapiaGalleguillos(2, "Rock", 2, 1, rock);
+        Option_21022807_TapiaGalleguillos op2 = new Option_21022807_TapiaGalleguillos(2, "Rock o Metal", 2, 0, rock);
 
         List<Option_21022807_TapiaGalleguillos> optionsFl1 = Arrays.asList(op1, op2, op1);
         //Creamos el flow
@@ -93,10 +93,44 @@ public class Main {
 
         cb2.chatbotAddFlow(flow5);
 
+        //Option chatbot 3
+        List<String> park = Arrays.asList("linkin park", "park");
+        Option_21022807_TapiaGalleguillos op16 = new Option_21022807_TapiaGalleguillos(1,"Linkin park",2,1,park);
+
+        List<String> a7x = Arrays.asList("avenged sevenfold", "a7x");
+        Option_21022807_TapiaGalleguillos op17 = new Option_21022807_TapiaGalleguillos(2,"Avenged sevenfold",2,2,a7x);
+
+
+        List<Option_21022807_TapiaGalleguillos> optionsFl6 = Arrays.asList(op16, op17,op6);
+
+        Flow_21022807_TapiaGalleguillos flow6 = new Flow_21022807_TapiaGalleguillos(0, "¿Que banda quieres escuchar? \n", optionsFl6);
+
         List<Chatbot_21022807_TapiaGalleguillos> chatbots = Arrays.asList(cb1, cb2);
 
+        List<String> numb = Arrays.asList("numb", "num");
+        Option_21022807_TapiaGalleguillos op19 = new Option_21022807_TapiaGalleguillos(1,"Numb",0,1,numb);
+
+        List<String> end = Arrays.asList("in the end", "end");
+        Option_21022807_TapiaGalleguillos op20 = new Option_21022807_TapiaGalleguillos(2,"In the end",0,1,end);
+
+        List<Option_21022807_TapiaGalleguillos> optionsFl7 = Arrays.asList(op19, op20);
+        Flow_21022807_TapiaGalleguillos flow7 = new Flow_21022807_TapiaGalleguillos(1, "¿Que cancion quieres escuchar? \n", optionsFl7);
+
+        List<String> seize = Arrays.asList("seize the day", "seize");
+        Option_21022807_TapiaGalleguillos op21 = new Option_21022807_TapiaGalleguillos(1,"Seize the day",0,1,seize);
+
+        List<String> nightmare = Arrays.asList("night", "nightmare");
+        Option_21022807_TapiaGalleguillos op22 = new Option_21022807_TapiaGalleguillos(2,"Nigthmare",0,1,nightmare);
+
+        List<Option_21022807_TapiaGalleguillos> optionsFl8 = Arrays.asList(op21, op22);
+        Flow_21022807_TapiaGalleguillos flow8 = new Flow_21022807_TapiaGalleguillos(2, "¿Que cancion quieres escuchar? \n", optionsFl8);
+
+        List<Flow_21022807_TapiaGalleguillos> flowsCb3 = Arrays.asList(flow6, flow7, flow8);
+
+        Chatbot_21022807_TapiaGalleguillos cb3 = new Chatbot_21022807_TapiaGalleguillos(2, "Rock o Metal", "Bienvenido \n", 0, flowsCb3);
 
         system_21022807_TapiaGalleguillos s1 = new system_21022807_TapiaGalleguillos("Sistema Chatbots Musica", 0, chatbots);
+        s1.systemAddChatbot(cb3);
 
         User_21022807_TapiaGalleguillos user1 = new User_21022807_TapiaGalleguillos("Cesar");
 

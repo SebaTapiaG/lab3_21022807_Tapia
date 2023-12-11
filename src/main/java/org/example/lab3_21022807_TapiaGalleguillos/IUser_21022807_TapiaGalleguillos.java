@@ -17,4 +17,5 @@ public interface IUser_21022807_TapiaGalleguillos {
     public boolean mismoUser(String nombre);
 
     public boolean isConectado();
+
 }

@@ -23,7 +23,13 @@ public class Option_21022807_TapiaGalleguillos implements IOption_21022807_Tapia
         this.ChatbotCodeLink = ChatbotCodeLink;
         this.InitialFlowCodeLink = InitialFlowCodeLink;
         this.Keyword = Keyword;
-    }
+
+        for (int i = 0; i < Keyword.size(); i++) {
+            Keyword.set(i, Keyword.get(i).toLowerCase());
+            }
+
+        }
+
 
     /**
      *Obtiene el Code
@@ -112,7 +118,7 @@ public class Option_21022807_TapiaGalleguillos implements IOption_21022807_Tapia
      * @return boolean, si la keyword contiene message retorna true
      */
     public boolean mismaKey(String message){
-        if (this.Keyword.contains(message)){
+        if (this.Keyword.contains(message.toLowerCase())){
             return true;
         }else {
             return false;

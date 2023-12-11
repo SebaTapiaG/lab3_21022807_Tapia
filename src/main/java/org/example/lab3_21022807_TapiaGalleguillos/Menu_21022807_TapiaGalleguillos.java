@@ -27,6 +27,10 @@ public class Menu_21022807_TapiaGalleguillos {
                 case "1":
                     System.out.println("Ingrese su nombre de usuario");
                     String nombreUsuario = scanner.next();
+                    if(!sistema.existeUser(nombreUsuario)){
+                        System.out.println("El usuario no existe");
+                        break;
+                    }
                     sistema.systemLogin(nombreUsuario);
                     if(!sistema.getUserConect().getTipo()) {   //El usuario es normal?
                         normalMenu(sistema, nombreUsuario);

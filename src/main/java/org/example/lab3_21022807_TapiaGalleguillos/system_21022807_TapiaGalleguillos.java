@@ -128,6 +128,21 @@ public class system_21022807_TapiaGalleguillos implements ISystem_21022807_Tapia
     }
 
     /**
+     * Verifica si un usuario existe
+     * @param name
+     * @return boolean , si el usuario existe retorna True
+     */
+    public boolean existeUser(String name) {
+        for (User_21022807_TapiaGalleguillos user : getUsers()) {
+            if (user.mismoUser(name)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    /**
      * Busca un chatbot especifico del system
      * @param id ,id del chatbot a buscar
      * @return Chatbot encontrado
