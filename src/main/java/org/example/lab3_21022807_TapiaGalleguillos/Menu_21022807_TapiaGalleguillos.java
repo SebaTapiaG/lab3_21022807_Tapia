@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Menu{
+public class Menu_21022807_TapiaGalleguillos {
 
     /**
      * Menu de inicio y registro
      * @param sistema
      */
-    public static void registroMenu(system sistema){
+    public static void registroMenu(system_21022807_TapiaGalleguillos sistema){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -56,7 +56,7 @@ public class Menu{
      * Menu para registrarse
      * @param sistema
      */
-    public static void userRegister(system sistema) {
+    public static void userRegister(system_21022807_TapiaGalleguillos sistema) {
 
         Scanner scanner = new Scanner(System.in);
         String entrada;
@@ -72,7 +72,7 @@ public class Menu{
                 case "1":
                     System.out.println("Ingrese su nombre de usuario: \n");
                     String nombreUsuario = scanner.next();
-                    User newUser = new User(nombreUsuario);
+                    User_21022807_TapiaGalleguillos newUser = new User_21022807_TapiaGalleguillos(nombreUsuario);
                     sistema.systemAddUser(newUser);
                     sistema.systemLogin(nombreUsuario);      //Inicia sesion automaticamente
                     normalMenu(sistema,nombreUsuario);
@@ -81,7 +81,7 @@ public class Menu{
                 case "2":
                     System.out.println("Ingrese su nombre de usuario: \n");
                     String nombreAdmin = scanner.next();
-                    User newAdmin = new User(nombreAdmin);
+                    User_21022807_TapiaGalleguillos newAdmin = new User_21022807_TapiaGalleguillos(nombreAdmin);
                     newAdmin.setTipo(true);
                     sistema.systemAddUser(newAdmin);
                     sistema.systemLogin(nombreAdmin);   //Inicia sesion automaticamente
@@ -105,7 +105,7 @@ public class Menu{
       * @param sistema
      * @param nombreUsuario
      */
-    public static void adminMenu(system sistema,String nombreUsuario){
+    public static void adminMenu(system_21022807_TapiaGalleguillos sistema, String nombreUsuario){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -133,8 +133,8 @@ public class Menu{
                     scanner.nextLine();
                     System.out.println("Ingresa el startFlowID del Chatbot: \n");
                     int startFlow = scanner.nextInt();
-                    List<Flow> flowsVacio = new ArrayList<Flow>();
-                    Chatbot cbNuevo = new Chatbot(id,nombre,welcome,startFlow,flowsVacio);
+                    List<Flow_21022807_TapiaGalleguillos> flowsVacio = new ArrayList<Flow_21022807_TapiaGalleguillos>();
+                    Chatbot_21022807_TapiaGalleguillos cbNuevo = new Chatbot_21022807_TapiaGalleguillos(id,nombre,welcome,startFlow,flowsVacio);
                     sistema.systemAddChatbot(cbNuevo);
                     break;
 
@@ -142,7 +142,7 @@ public class Menu{
                     System.out.println(sistema.mostrarChatbots());
                     System.out.println("Elige el chatbot a modificar segun su id\n");
                     int idCb = scanner.nextInt();
-                    Chatbot chatbotBuscado = sistema.buscarChatbot(idCb);
+                    Chatbot_21022807_TapiaGalleguillos chatbotBuscado = sistema.buscarChatbot(idCb);
                     modificarChat(sistema,nombreUsuario,chatbotBuscado);
                     break;
 
@@ -203,7 +203,7 @@ public class Menu{
      * @param sistema
      * @param nombreUsuario
      */
-    public static void normalMenu(system sistema,String nombreUsuario){
+    public static void normalMenu(system_21022807_TapiaGalleguillos sistema, String nombreUsuario){
 
         Scanner scanner = new Scanner(System.in);
         String entrada;
@@ -271,7 +271,7 @@ public class Menu{
      * @param nombreUsuario
      * @param chatbot
      */
-    public static void modificarChat(system sistema,String nombreUsuario, Chatbot chatbot){
+    public static void modificarChat(system_21022807_TapiaGalleguillos sistema, String nombreUsuario, Chatbot_21022807_TapiaGalleguillos chatbot){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -296,15 +296,15 @@ public class Menu{
                         int id = scanner.nextInt();
                         System.out.println("Ingresa el nombre del Flow: \n");
                         String nombre = scanner.next();
-                        List<Option> optionsVacio = new ArrayList<Option>();
-                        Flow flowNew = new Flow(id,nombre,optionsVacio);
+                        List<Option_21022807_TapiaGalleguillos> optionsVacio = new ArrayList<Option_21022807_TapiaGalleguillos>();
+                        Flow_21022807_TapiaGalleguillos flowNew = new Flow_21022807_TapiaGalleguillos(id,nombre,optionsVacio);
                         chatbot.chatbotAddFlow(flowNew);
                         modificarFlow(sistema,nombreUsuario,chatbot,flowNew);
                     }
                     System.out.println(chatbot.verChatbot());
                     System.out.println("Elige el flow a modificar segun su id \n");
                     int idFl = scanner.nextInt();
-                    Flow flowBuscado = chatbot.buscarFlow(idFl);
+                    Flow_21022807_TapiaGalleguillos flowBuscado = chatbot.buscarFlow(idFl);
                     modificarFlow(sistema,nombreUsuario,chatbot,flowBuscado);
                     break;
 
@@ -312,11 +312,11 @@ public class Menu{
                     System.out.println(chatbot.verChatbot());
                     System.out.println("Elige el flow que contiene la option, segun su id \n");
                     int idFl1 = scanner.nextInt();
-                    Flow flow = chatbot.buscarFlow(idFl1);
+                    Flow_21022807_TapiaGalleguillos flow = chatbot.buscarFlow(idFl1);
                     System.out.println(flow.verOptions());
                     System.out.println("Elige el Option a modificar segun su code \n");
                     String idCode = scanner.next();
-                    Option opBuscado = flow.buscarOption(idCode);
+                    Option_21022807_TapiaGalleguillos opBuscado = flow.buscarOption(idCode);
                     modificarOption(sistema,nombreUsuario,chatbot,flow,opBuscado);
                     break;
 
@@ -361,7 +361,7 @@ public class Menu{
      * @param chatbot
      * @param flow
      */
-    public static void modificarFlow(system sistema,String nombreUsuario, Chatbot chatbot,Flow flow){
+    public static void modificarFlow(system_21022807_TapiaGalleguillos sistema, String nombreUsuario, Chatbot_21022807_TapiaGalleguillos chatbot, Flow_21022807_TapiaGalleguillos flow){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -382,8 +382,8 @@ public class Menu{
                     int id = scanner.nextInt();
                     System.out.println("Ingresa el nombre del Flow: \n");
                     String nombre = scanner.next();
-                    List<Option> optionsVacio = new ArrayList<Option>();
-                    Flow flowNew = new Flow(id,nombre,optionsVacio);
+                    List<Option_21022807_TapiaGalleguillos> optionsVacio = new ArrayList<Option_21022807_TapiaGalleguillos>();
+                    Flow_21022807_TapiaGalleguillos flowNew = new Flow_21022807_TapiaGalleguillos(id,nombre,optionsVacio);
                     chatbot.chatbotAddFlow(flowNew);
                     modificarChat(sistema, nombreUsuario, chatbot);
                     break;
@@ -400,14 +400,14 @@ public class Menu{
                         System.out.println("Ingresa el initialFlowCodeLink de Option: \n");
                         int flLink = scanner.nextInt();
                         List<String> keywordsVacio = new ArrayList<String>();
-                        Option optionNew = new Option(code,nombreOp,cbLink,flLink,keywordsVacio);
+                        Option_21022807_TapiaGalleguillos optionNew = new Option_21022807_TapiaGalleguillos(code,nombreOp,cbLink,flLink,keywordsVacio);
                         flow.flowAddOption(optionNew);
                         modificarOption(sistema,nombreUsuario,chatbot,flow,optionNew);
                     }
                     System.out.println(flow.verOptions());
                     System.out.println("Elige el Option a modificar segun su code \n");
                     String idCode = scanner.next();
-                    Option opBuscado = flow.buscarOption(idCode);
+                    Option_21022807_TapiaGalleguillos opBuscado = flow.buscarOption(idCode);
                     modificarOption(sistema,nombreUsuario,chatbot,flow,opBuscado);
                     break;
 
@@ -441,7 +441,7 @@ public class Menu{
      * @param flow
      * @param option
      */
-    public static void modificarOption(system sistema,String nombreUsuario,Chatbot chatbot,Flow flow,Option option){
+    public static void modificarOption(system_21022807_TapiaGalleguillos sistema, String nombreUsuario, Chatbot_21022807_TapiaGalleguillos chatbot, Flow_21022807_TapiaGalleguillos flow, Option_21022807_TapiaGalleguillos option){
         Scanner scanner = new Scanner(System.in);
         String entrada;
 
@@ -470,7 +470,7 @@ public class Menu{
                     System.out.println("Ingresa el initialFlowCodeLink de Option: \n");
                     int flLink = scanner.nextInt();
                     List<String> keywordsVacio = new ArrayList<String>();
-                    Option optionNew = new Option(id,nombre,cbLink,flLink,keywordsVacio);
+                    Option_21022807_TapiaGalleguillos optionNew = new Option_21022807_TapiaGalleguillos(id,nombre,cbLink,flLink,keywordsVacio);
                     flow.flowAddOption(optionNew);
                     modificarFlow(sistema,nombreUsuario,chatbot,flow);
                     break;

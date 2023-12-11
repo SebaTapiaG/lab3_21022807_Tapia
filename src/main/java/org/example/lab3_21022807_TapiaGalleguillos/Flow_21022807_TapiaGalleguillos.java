@@ -3,10 +3,10 @@ package org.example.lab3_21022807_TapiaGalleguillos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flow implements IFlow{
+public class Flow_21022807_TapiaGalleguillos implements IFlow_21022807_TapiaGalleguillos {
     private int id;
     private String nameMsg;
-    private List<Option> option;
+    private List<Option_21022807_TapiaGalleguillos> option;
 
     /**
      *Constructor del objeto
@@ -14,12 +14,12 @@ public class Flow implements IFlow{
      * @param nameMsg
      * @param option
      */
-    public Flow(int id,String nameMsg, List<Option> option){
+    public Flow_21022807_TapiaGalleguillos(int id, String nameMsg, List<Option_21022807_TapiaGalleguillos> option){
         this.id = id;
         this.nameMsg = nameMsg;
-        this.option = new ArrayList<Option>();
+        this.option = new ArrayList<Option_21022807_TapiaGalleguillos>();
 
-        for(Option newOption : option){
+        for(Option_21022807_TapiaGalleguillos newOption : option){
             if(!this.option.contains(newOption)){
                 this.option.add(newOption);
             }
@@ -48,7 +48,7 @@ public class Flow implements IFlow{
      *Obtiene la lista de options
      * @return List</Option>
      */
-    public List<Option> getOption() {
+    public List<Option_21022807_TapiaGalleguillos> getOption() {
         return option;
     }
 
@@ -77,7 +77,7 @@ public class Flow implements IFlow{
     public boolean equals(Object obj) {
         if (this == obj) return true;
 
-        Flow auxFlow = (Flow) obj;
+        Flow_21022807_TapiaGalleguillos auxFlow = (Flow_21022807_TapiaGalleguillos) obj;
 
         // Compara los ids utilizando equals()
         return getId() == auxFlow.getId();
@@ -87,7 +87,7 @@ public class Flow implements IFlow{
      *Agrega una option al Flow
      * @param op option a agregar
      */
-    public void flowAddOption(Option op){
+    public void flowAddOption(Option_21022807_TapiaGalleguillos op){
         if (!getOption().contains(op)) {
             this.option.add(op);
         }else return;
@@ -112,7 +112,7 @@ public class Flow implements IFlow{
      */
     public List<String> verOptions(){
         List<String> opciones = new ArrayList<String>();
-        for(Option option: getOption()){
+        for(Option_21022807_TapiaGalleguillos option: getOption()){
             opciones.add(option.toString());
         }
         return opciones;
@@ -124,8 +124,8 @@ public class Flow implements IFlow{
      * @param code
      * @return option , Option encontrada
      */
-    public Option buscarOption(String code){
-        for(Option optionAux : getOption()){
+    public Option_21022807_TapiaGalleguillos buscarOption(String code){
+        for(Option_21022807_TapiaGalleguillos optionAux : getOption()){
             if (optionAux.mismoCode(code)){
                 return optionAux;
             }

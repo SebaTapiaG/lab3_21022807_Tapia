@@ -2,7 +2,7 @@ package org.example.lab3_21022807_TapiaGalleguillos;
 
 import java.util.List;
 
-public class Option implements IOption{
+public class Option_21022807_TapiaGalleguillos implements IOption_21022807_TapiaGalleguillos {
     private int code;
     private String message;
     private int ChatbotCodeLink;
@@ -17,7 +17,7 @@ public class Option implements IOption{
      * @param InitialFlowCodeLink
      * @param Keyword
      */
-    public Option(int code, String message, int ChatbotCodeLink, int InitialFlowCodeLink, List<String> Keyword) {
+    public Option_21022807_TapiaGalleguillos(int code, String message, int ChatbotCodeLink, int InitialFlowCodeLink, List<String> Keyword) {
         this.code = code;
         this.message = message;
         this.ChatbotCodeLink = ChatbotCodeLink;
@@ -100,7 +100,7 @@ public class Option implements IOption{
         if (this == obj) return true;
         if (obj == null) return false;
 
-        Option auxOption = (Option) obj;
+        Option_21022807_TapiaGalleguillos auxOption = (Option_21022807_TapiaGalleguillos) obj;
 
         // Compara los codes de la option utilizando equals()
         return getCode() == auxOption.getCode();

@@ -3,7 +3,7 @@ package org.example.lab3_21022807_TapiaGalleguillos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements IUser {
+public class User_21022807_TapiaGalleguillos implements IUser_21022807_TapiaGalleguillos {
     private String name;
     private boolean tipo;   //Si el tipo es verdadero es administrador, si es falso es normal
 
@@ -15,7 +15,7 @@ public class User implements IUser {
      *
      * @param name
      */
-    public User(String name){
+    public User_21022807_TapiaGalleguillos(String name){
         this.name = name;
         this.tipo = false;  //El usuario es normal por defecto
         this.conectado = false;  //El usuario esta desconectado por defecto
@@ -90,7 +90,7 @@ public class User implements IUser {
         if (this == obj) return true;  // Verifica si es la misma instancia
         if (obj == null) return false;  // Verifica si las clases son diferentes
 
-        User auxUsuario = (User) obj;  // Hace un cast a Option
+        User_21022807_TapiaGalleguillos auxUsuario = (User_21022807_TapiaGalleguillos) obj;  // Hace un cast a Option
 
         // Compara los códigos utilizando equals()
         return getName() == auxUsuario.getName();

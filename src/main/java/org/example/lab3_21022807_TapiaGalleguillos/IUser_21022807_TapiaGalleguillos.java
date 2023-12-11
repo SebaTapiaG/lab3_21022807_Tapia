@@ -2,7 +2,7 @@ package org.example.lab3_21022807_TapiaGalleguillos;
 
 import java.util.List;
 
-public interface IUser {
+public interface IUser_21022807_TapiaGalleguillos {
 
     public String getName();
 

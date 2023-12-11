@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Random;
 
 
-public class system implements ISystem {
+public class system_21022807_TapiaGalleguillos implements ISystem_21022807_TapiaGalleguillos {
 
     private String name;
     private int initialChatbotCodeLink;
-    private List<Chatbot> chatbots;
+    private List<Chatbot_21022807_TapiaGalleguillos> chatbots;
 
-    private List<User> users;
+    private List<User_21022807_TapiaGalleguillos> users;
 
     /**
      * Constructor del objeto
@@ -25,13 +25,13 @@ public class system implements ISystem {
      * @param initialChatbotCodeLink
      * @param chatbots
      */
-    public system(String name, int initialChatbotCodeLink, List<Chatbot> chatbots) {
+    public system_21022807_TapiaGalleguillos(String name, int initialChatbotCodeLink, List<Chatbot_21022807_TapiaGalleguillos> chatbots) {
         this.name = name;
         this.initialChatbotCodeLink = initialChatbotCodeLink;
-        this.chatbots = new ArrayList<Chatbot>();
-        this.users = new ArrayList<User>();
+        this.chatbots = new ArrayList<Chatbot_21022807_TapiaGalleguillos>();
+        this.users = new ArrayList<User_21022807_TapiaGalleguillos>();
 
-        for (Chatbot newChatbot : chatbots) {
+        for (Chatbot_21022807_TapiaGalleguillos newChatbot : chatbots) {
             if (!this.chatbots.contains(newChatbot)) {
                 this.chatbots.add(newChatbot);
             }
@@ -59,7 +59,7 @@ public class system implements ISystem {
      * Obtiene la lista de chatbots
      * @return List</Chatbot>
      */
-    public List<Chatbot> getChatbots() {
+    public List<Chatbot_21022807_TapiaGalleguillos> getChatbots() {
         return chatbots;
     }
 
@@ -67,7 +67,7 @@ public class system implements ISystem {
      * Obtiene la lista de users
      * @return List</User>
      */
-    public List<User> getUsers() {
+    public List<User_21022807_TapiaGalleguillos> getUsers() {
         return users;
     }
 
@@ -75,8 +75,8 @@ public class system implements ISystem {
      * Devuelve el usuario conectado
      * @return User ,usuario conectado
      */
-    public User getUserConect() {
-        for (User conectadoUser : getUsers()) {
+    public User_21022807_TapiaGalleguillos getUserConect() {
+        for (User_21022807_TapiaGalleguillos conectadoUser : getUsers()) {
             if (conectadoUser.isConectado()) {
                 return conectadoUser;
             }
@@ -100,10 +100,10 @@ public class system implements ISystem {
      * Obtiene el chatbot inicial
      * @return Chatbot ,chatbot inicial
      */
-    public Chatbot getChatbotInitial() {
-        Chatbot chatbotInitial = null;
+    public Chatbot_21022807_TapiaGalleguillos getChatbotInitial() {
+        Chatbot_21022807_TapiaGalleguillos chatbotInitial = null;
         int id = getInitialChatbotCodeLink();
-        for (Chatbot initialChat : getChatbots()) {
+        for (Chatbot_21022807_TapiaGalleguillos initialChat : getChatbots()) {
             if (initialChat.mismoID(id)) {
                 chatbotInitial = initialChat;
                 return chatbotInitial;
@@ -118,7 +118,7 @@ public class system implements ISystem {
      * @return boolean ,si existe el chatbot retorna true
      */
     public boolean existeChatbot(int id) {
-        for (Chatbot existeChatbot : getChatbots()) {
+        for (Chatbot_21022807_TapiaGalleguillos existeChatbot : getChatbots()) {
             if (existeChatbot.mismoID(id)) {
                 return true;
             }
@@ -132,8 +132,8 @@ public class system implements ISystem {
      * @param id ,id del chatbot a buscar
      * @return Chatbot encontrado
      */
-    public Chatbot buscarChatbot(int id) {
-        for (Chatbot chatbotAux : getChatbots()) {
+    public Chatbot_21022807_TapiaGalleguillos buscarChatbot(int id) {
+        for (Chatbot_21022807_TapiaGalleguillos chatbotAux : getChatbots()) {
             if (chatbotAux.mismoID(id)) {
                 return chatbotAux;
             }
@@ -145,7 +145,7 @@ public class system implements ISystem {
      * Obtiene las opciones iniciales
      * @return List</Option>
      */
-    public List<Option> getInitialOptions() {
+    public List<Option_21022807_TapiaGalleguillos> getInitialOptions() {
         return getChatbotInitial().getInitialFlow().getOption();
     }
 
@@ -163,7 +163,7 @@ public class system implements ISystem {
      * @param user
      * @param message
      */
-    public void actualizarHistorial(User user, String message) {
+    public void actualizarHistorial(User_21022807_TapiaGalleguillos user, String message) {
         LocalDateTime fechaActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String fechaFormateada = fechaActual.format(formato);
@@ -176,7 +176,7 @@ public class system implements ISystem {
      * Agrega un chatbot al system
      * @param cb ,chatbot a agregar
      */
-    public void systemAddChatbot(Chatbot cb) {
+    public void systemAddChatbot(Chatbot_21022807_TapiaGalleguillos cb) {
         if (!getChatbots().contains(cb)) {
             this.chatbots.add(cb);
         } else {
@@ -189,7 +189,7 @@ public class system implements ISystem {
      * Agrega un user al system
      * @param newUser ,User a agregar
      */
-    public void systemAddUser(User newUser) {
+    public void systemAddUser(User_21022807_TapiaGalleguillos newUser) {
         if (!getUsers().contains(newUser)) {
             this.users.add(newUser);
         }
@@ -204,8 +204,8 @@ public class system implements ISystem {
         if (!inicioSesion()) {   //No hay ningun usuario conectado
 
             //Buscamos el usuario
-            User userConect = null;
-            for (User buscarUser : getUsers()) {
+            User_21022807_TapiaGalleguillos userConect = null;
+            for (User_21022807_TapiaGalleguillos buscarUser : getUsers()) {
                 if (buscarUser.mismoUser(user)) {
                     userConect = buscarUser;
                     break;
@@ -223,7 +223,7 @@ public class system implements ISystem {
      * Cierra sesion
      */
     public void systemLogout() {
-        User userConect = getUserConect();
+        User_21022807_TapiaGalleguillos userConect = getUserConect();
         if (userConect != null) {
             userConect.setConectado(false);
         } else return;
@@ -234,9 +234,9 @@ public class system implements ISystem {
      * @param message ,Option elegida
      * @return
      */
-    public Option optionEscogida(String message) {
-        Option optionElegida = null;
-        for (Option buscarOption : getInitialOptions()) {
+    public Option_21022807_TapiaGalleguillos optionEscogida(String message) {
+        Option_21022807_TapiaGalleguillos optionElegida = null;
+        for (Option_21022807_TapiaGalleguillos buscarOption : getInitialOptions()) {
             if (buscarOption.mismaKey(message)) {
                 optionElegida = buscarOption;
                 return optionElegida;
@@ -259,13 +259,13 @@ public class system implements ISystem {
             return;
         }
 
-        User userConect = getUserConect();
+        User_21022807_TapiaGalleguillos userConect = getUserConect();
 
         if (userConect.getHistorial().isEmpty()) {
             actualizarHistorial(userConect, message);
         } else {
             //Actualiza los links
-            Option optionElegida = optionEscogida(message);
+            Option_21022807_TapiaGalleguillos optionElegida = optionEscogida(message);
             if (optionElegida == null) {  //No existe la option
                 return;
             }
@@ -275,7 +275,7 @@ public class system implements ISystem {
                 return;
             }
             setInitialChatbotCodeLink(initialIdCb);
-            Chatbot chatbotInitial = getChatbotInitial();
+            Chatbot_21022807_TapiaGalleguillos chatbotInitial = getChatbotInitial();
             chatbotInitial.setStartFlowId(initialIdFl);
             actualizarHistorial(userConect, message);
         }
@@ -298,8 +298,8 @@ public class system implements ISystem {
     public String systemSynthesis(String user) {
 
         //Buscamos el usuario
-        User userSearch = null;
-        for (User buscarUser : getUsers()) {
+        User_21022807_TapiaGalleguillos userSearch = null;
+        for (User_21022807_TapiaGalleguillos buscarUser : getUsers()) {
             if (buscarUser.mismoUser(user)) {
                 userSearch = buscarUser;
                 break;
@@ -340,7 +340,7 @@ public class system implements ISystem {
      */
     public String mostrarChatbots() {
         List<String> mostrar = new ArrayList<String>();
-        for (Chatbot chatbot : getChatbots()) {
+        for (Chatbot_21022807_TapiaGalleguillos chatbot : getChatbots()) {
             mostrar.add(chatbot.verChatbot());
         }
         return String.join("\n", mostrar);

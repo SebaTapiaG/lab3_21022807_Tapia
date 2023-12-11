@@ -3,13 +3,13 @@ package org.example.lab3_21022807_TapiaGalleguillos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chatbot implements IChatbot{
+public class Chatbot_21022807_TapiaGalleguillos implements IChatbot_21022807_TapiaGalleguillos {
     private int chatbotID ;
     private String name;
     private String welcomeMessage;
     private int startFlowId;
 
-    private List<Flow> flows;
+    private List<Flow_21022807_TapiaGalleguillos> flows;
 
     /**
      *Constructo del objeto
@@ -19,14 +19,14 @@ public class Chatbot implements IChatbot{
      * @param startFlowId
      * @param flows
      */
-    public Chatbot(int chatbotID, String name, String welcomeMessage, int startFlowId, List<Flow> flows){
+    public Chatbot_21022807_TapiaGalleguillos(int chatbotID, String name, String welcomeMessage, int startFlowId, List<Flow_21022807_TapiaGalleguillos> flows){
         this.chatbotID= chatbotID;
         this.name=name;
         this.welcomeMessage=welcomeMessage;
         this.startFlowId=startFlowId;
-        this.flows= new ArrayList<Flow>();
+        this.flows= new ArrayList<Flow_21022807_TapiaGalleguillos>();
 
-        for(Flow newFlow : flows) {
+        for(Flow_21022807_TapiaGalleguillos newFlow : flows) {
             if (!this.flows.contains(newFlow)) {
                 this.flows.add(newFlow);
             }
@@ -70,7 +70,7 @@ public class Chatbot implements IChatbot{
      *Obtiene la lista de flows
      * @return List</Flow>
      */
-    public List<Flow> getFlows() {
+    public List<Flow_21022807_TapiaGalleguillos> getFlows() {
         return flows;
     }
 
@@ -110,10 +110,10 @@ public class Chatbot implements IChatbot{
      * Obtiene el flow initial a partir del startFlowID
      * @return flow inicial
      */
-    public Flow getInitialFlow() {
-        Flow flowInitial = null;
+    public Flow_21022807_TapiaGalleguillos getInitialFlow() {
+        Flow_21022807_TapiaGalleguillos flowInitial = null;
         int id = getStartFlowId();
-        for (Flow initialFlow : getFlows()) {
+        for (Flow_21022807_TapiaGalleguillos initialFlow : getFlows()) {
             if (initialFlow.mismoId(id)) {
                 flowInitial = initialFlow;
                 return flowInitial;
@@ -132,7 +132,7 @@ public class Chatbot implements IChatbot{
         if (this == obj) return true;
         if (obj == null) return false;
 
-        Chatbot auxChatbot = (Chatbot) obj;
+        Chatbot_21022807_TapiaGalleguillos auxChatbot = (Chatbot_21022807_TapiaGalleguillos) obj;
 
         // Compara los ids utilizando equals()
         return getChatbotID() == auxChatbot.getChatbotID();
@@ -155,7 +155,7 @@ public class Chatbot implements IChatbot{
      *Agrega un flow al chatbot
      * @param fl , flow a agregar
      */
-    public void chatbotAddFlow(Flow fl){
+    public void chatbotAddFlow(Flow_21022807_TapiaGalleguillos fl){
         if (!getFlows().contains(fl)) {
             this.flows.add(fl);
         }else return;
@@ -167,8 +167,8 @@ public class Chatbot implements IChatbot{
      * @param id
      * @return flow encontrado
      */
-    public Flow buscarFlow(int id){
-        for(Flow flowAux : getFlows()){
+    public Flow_21022807_TapiaGalleguillos buscarFlow(int id){
+        for(Flow_21022807_TapiaGalleguillos flowAux : getFlows()){
             if (flowAux.mismoId(id)){
                 return flowAux;
             }
@@ -191,7 +191,7 @@ public class Chatbot implements IChatbot{
      */
     public String verChatbot(){
         List<String> mostrar = new ArrayList<String>();
-        for(Flow flow : getFlows()){
+        for(Flow_21022807_TapiaGalleguillos flow : getFlows()){
             mostrar.add(flow.verFlow());
         }
         return String.format("ID: %s, Nombre: %s, welcomeMessage %s, Flows: %s ",this.chatbotID,this.name,this.welcomeMessage,String.join("\n",mostrar));
